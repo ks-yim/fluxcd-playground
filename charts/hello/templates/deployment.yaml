@@ -27,17 +27,5 @@ spec:
             - name: http
               containerPort: {{ .Values.service.httpPort | default 8000 }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /internal/l7check
-              port: {{ .Values.service.httpPort | default 8000 }}
-            initialDelaySeconds: 1
-            timeoutSeconds: 5
-          readinessProbe:
-            httpGet:
-              path: /internal/l7check
-              port: {{ .Values.service.httpPort | default 8000 }}
-            initialDelaySeconds: 1
-            timeoutSeconds: 5
           resources:
 {{ toYaml .Values.resources | indent 12 }}
