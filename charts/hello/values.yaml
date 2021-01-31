@@ -4,7 +4,7 @@ replicaCount: 1
 logLevel: info
 
 image:
-  repository: hello-server
+  repository: point1304/hello-server
   tag: 0.1.0
   pullPolicy: IfNotPresent
 
