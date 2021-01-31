@@ -14,7 +14,6 @@ service:
   httpPort: 8000
 
 resources:
-  limits:
   requests:
     cpu: 1m
     memory: 16Mi

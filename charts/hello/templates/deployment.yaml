@@ -21,7 +21,8 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: openjdk:13
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -46,4 +47,4 @@ spec:
             initialDelaySeconds: 1
             timeoutSeconds: 5
           resources:
-            {{ toYaml .Values.resources }}
+{{ toYaml .Values.resources | indent 12 }}
