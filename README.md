@@ -3,7 +3,7 @@ Explore GitOps with Flux CD.
 
 **_Note:_** This example works in collaboration with [fleet-infra repository](https://github.com/ks-yim/fleet-infra)
 
-#### Workflow with GitOps powered by Flux CD
+## Workflow with GitOps powered by Flux CD
 1. DEV: push code changes to the app repository main branch
 2. CI: test/build the commit
 3. CI: build and push a docker container image tagged as ${APP_NAME}:${APP_VERSION}
@@ -11,7 +11,7 @@ Explore GitOps with Flux CD.
 5. CD: update the image tag in the app's `HelmRelease` manifest to the most recent version (Flux - cluster to Git reconciliation)
 6. CD: deploy new docker image to kubernetes cluster (Flux - Git to cluster reconciliation)
 
-#### Benefits
+## Benefits
 * **Pull-based deployment:**
   
   There used to be no clear boundary between CI and CD as many CI/CD pipelines have adopted a push-based deployment model.   
