@@ -1,0 +1,26 @@
+# Default values for hello.
+
+replicaCount: 1
+logLevel: info
+
+image:
+  repository: hello-server
+  tag: 0.1.0
+  pullPolicy: IfNotPresent
+
+service:
+  enabled: true
+  type: ClusterIP
+  httpPort: 8000
+
+serviceAccount:
+  enabled: false
+  name:
+
+resources:
+  limits:
+  requests:
+    cpu: 1m
+    memory: 100Mi
+
+nodeSelector: {}

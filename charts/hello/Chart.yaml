@@ -1,0 +1,12 @@
+apiVersion: v1
+version: 0.1.0
+appVersion: 0.1.0
+name: hello
+engine: gotpl
+description: Hello helm chart for Kubernetes with fluxcd
+home: https://github.com/ks-yim/fluxcd-playground
+maintainers:
+  - email: point1304@gmail.com
+    name: K.S. Yim
+sources:
+  - https://github.com/ks-yim/fluxcd-playground
