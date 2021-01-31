@@ -7,9 +7,9 @@ Explore GitOps with Flux CD.
 1. DEV: push code changes to the app repository main branch
 2. CI: test/build the commit
 3. CI: build and push a docker container image tagged as ${APP_NAME}:${APP_VERSION}
-4. CD: pull the lates image metadata from the app registry (Flux - image scanning)
-5. CD: update the image tag in the app's `HelmRelease` manifest to the most recent version (Flux - cluster to Git reconciliation)
-6. CD: deploy new docker image to kubernetes cluster (Flux - Git to cluster reconciliation)
+4. CD: pull the latest image metadata from the app registry (Flux - image scanning)
+5. CD: update the image tag in the app's `HelmRelease` manifest to the most recent version (Flux - cluster to Git reconciliation, Flux CD makes a commit to update the image tag)
+6. CD: deploy helm release with the newest docker image to kubernetes cluster (Flux - Git to cluster reconciliation)
 
 ## Benefits
 * **Pull-based deployment:**
