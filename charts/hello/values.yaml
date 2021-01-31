@@ -5,7 +5,7 @@ logLevel: info
 
 image:
   repository: point1304/hello-server
-  tag: 0.1.0 # {"$imagepolicy": "flux-system:hello:tag"}
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 service:
