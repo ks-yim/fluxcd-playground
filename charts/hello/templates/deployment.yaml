@@ -28,21 +28,15 @@ spec:
               containerPort: {{ .Values.service.httpPort | default 8000 }}
               protocol: TCP
           livenessProbe:
-            exec:
-              command:
-                - podcli
-                - check
-                - http
-                - localhost:{{ .Values.service.httpPort | default 8000}}/internal/l7check
+            httpGet:
+              path: /internal/l7check
+              port: {{ .Values.service.httpPort | default 8000 }}
             initialDelaySeconds: 1
             timeoutSeconds: 5
           readinessProbe:
-            exec:
-              command:
-                - podcli
-                - check
-                - http
-                - localhost:{{ .Values.service.httpPort | default 8000}}/internal/l7check
+            httpGet:
+              path: /internal/l7check
+              port: {{ .Values.service.httpPort | default 8000 }}
             initialDelaySeconds: 1
             timeoutSeconds: 5
           resources:
