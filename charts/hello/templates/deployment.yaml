@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "hello.name" }}
+  name: {{ template "hello.name" . }}
   labels:
     {{- include "hello.labels" . | nindent 4 }}
 spec:
@@ -12,16 +12,13 @@ spec:
       maxUnavailable: 1
   selector:
     matchLabels:
-      {{- include "hello.selectorLabels" . | indent 6 }}
+      {{- include "hello.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "hello.selectorLabels" . | indent 8 }}
+        {{- include "hello.selectorLabels" . | nindent 8 }}
     spec:
       terminationGracePeriodSeconds: 30
-      {{- if .Values.serviceAccount.enabled }}
-      serviceAccountName: {{ template "hello.serviceAccountName" . }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -49,4 +46,4 @@ spec:
             initialDelaySeconds: 1
             timeoutSeconds: 5
           resources:
-            {{ .Values.resources | indent 12 }}
+            {{ toYaml .Values.resources }}

@@ -25,7 +25,7 @@ Create a default fully qualified app name.
 Create chart name and version to be used as chart labels.
 */}}
 {{- define "hello.chart" -}}
-{{- printfn "%s-%s" .Chart.Name .Chart.Version | replace "+" "-" | trunc 63 | trimSuffix "-" }}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "-" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -44,7 +44,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "hello.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "hello.fullname" }}
+app.kubernetes.io/name: {{ include "hello.fullname" . }}
 {{- end }}
 
 {{/*

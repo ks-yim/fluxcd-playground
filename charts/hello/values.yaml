@@ -13,14 +13,10 @@ service:
   type: ClusterIP
   httpPort: 8000
 
-serviceAccount:
-  enabled: false
-  name:
-
 resources:
   limits:
   requests:
     cpu: 1m
-    memory: 100Mi
+    memory: 16Mi
 
 nodeSelector: {}
