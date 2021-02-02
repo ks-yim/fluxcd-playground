@@ -10,7 +10,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       partition: 1
-  serviceName: {{ template "hello.fullname" . }}-headless
+  serviceName: {{ template "hello.fullname" . }}-headlesss
   selector:
     matchLabels:
       {{- include "hello.selectorLabels" . | nindent 6 }}
