@@ -1,6 +1,6 @@
 # Default values for hello.
 
-replicaCount: 1
+replicaCount: 3
 logLevel: info
 
 image:
@@ -10,10 +10,9 @@ image:
 
 service:
   enabled: true
-  type: NodePort
   httpPort: 8000
   externalPort: 8000
-  nodePort: 31198
+  firstNodePort: 31198
 
 resources:
   requests:

@@ -1,15 +1,16 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ template "hello.name" . }}
+  name: {{ template "hello.fullname" . }}
   labels:
     {{- include "hello.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  strategy:
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1
+      partition: 1
+  serviceName: {{ template "hello.fullname" . }}-headless
   selector:
     matchLabels:
       {{- include "hello.selectorLabels" . | nindent 6 }}

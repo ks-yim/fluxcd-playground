@@ -1,20 +1,27 @@
 {{- if .Values.service.enabled }}
+  {{- $relicaCount := .Values.replicaCount | int }}
+  {{- $fullname := include "hello.fullname" . }}
+  {{- range $i, $e := until $relicaCount }}
+    {{- $externalListenerPort := add $.Values.service.firstNodePort $i }}
+    {{- $responsiblePod := printf "%s-%d" $fullname $i }}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "hello.fullname" . }}
+  name: {{ template "hello.fullname" $ }}-{{ $i }}-nodeport
   labels:
-    {{- include "hello.labels" . | nindent 4 }}
+    pod: {{ $responsiblePod }}
+    {{- include "hello.labels" $ | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: NodePort
   ports:
-    - port: {{ .Values.service.externalPort }}
+    - port: {{ $.Values.service.externalPort }}
       targetPort: http
       protocol: TCP
       name: http
-      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
-      nodePort: {{ .Values.service.nodePort }}
-      {{- end }}
+      nodePort: {{ $externalListenerPort }}
   selector:
-    {{- include "hello.selectorLabels" . | nindent 4 }}
+    {{- include "hello.selectorLabels" $ | nindent 4 }}
+    statefulset.kubernetes.io/pod-name: {{ $responsiblePod | quote }}
   {{- end }}
+{{- end }}
