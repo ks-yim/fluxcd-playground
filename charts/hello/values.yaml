@@ -1,6 +1,6 @@
 # Default values for hello.
 
-replicaCount: 3
+replicaCount: 4
 logLevel: info
 
 image:
