@@ -1,14 +1,15 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: {{ template "hello.fullname" . }}
   labels:
     {{- include "hello.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  updateStrategy:
+  strategy:
     type: RollingUpdate
-  serviceName: {{ template "hello.fullname" . }}-headlesss
+    rollingUpdate:
+      maxUnavailable: 1
   selector:
     matchLabels:
       {{- include "hello.selectorLabels" . | nindent 6 }}
@@ -28,7 +29,7 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /internal/l7check
+              path: /monitor/l7check
               port: {{ .Values.service.httpPort | default 8000 }}
             initialDelaySeconds: 1
             timeoutSeconds: 5
