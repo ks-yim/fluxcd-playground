@@ -16,6 +16,9 @@ service:
   externalPort: 8080
   nodePort: 31198
 
+monitoring:
+  enabled: true
+
 resources:
   requests:
     cpu: 10m

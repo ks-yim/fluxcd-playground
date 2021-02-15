@@ -17,6 +17,12 @@ spec:
     metadata:
       labels:
         {{- include "hello.selectorLabels" . | nindent 8 }}
+      annotations:
+        {{- if .Values.monitoring.enabled }}
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '8080'
+        prometheus.io/path: /monitor/prometheus
+        {{- end }}
     spec:
       terminationGracePeriodSeconds: 30
       containers:
