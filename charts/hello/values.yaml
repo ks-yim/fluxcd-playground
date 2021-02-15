@@ -11,8 +11,8 @@ image:
 service:
   enabled: true
   type: ClusterIP
-  httpPort: 8000
-  externalPort: 8000
+  httpPort: 8080
+  externalPort: 8080
   nodePort: 31198
 
 resources:
