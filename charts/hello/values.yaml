@@ -12,6 +12,7 @@ service:
   enabled: true
   type: ClusterIP
   httpPort: 8080
+  httpsPort: 8443
   externalPort: 8080
   nodePort: 31198
 
