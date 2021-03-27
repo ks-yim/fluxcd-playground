@@ -1,0 +1,4 @@
+app:
+  phase: alpha
+
+replicaCount: 1

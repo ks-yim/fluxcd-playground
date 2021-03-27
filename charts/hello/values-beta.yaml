@@ -1,1 +1,4 @@
+app:
+  phase: beta
+
 replicaCount: 2

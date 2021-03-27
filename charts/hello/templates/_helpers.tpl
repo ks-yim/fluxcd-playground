@@ -33,6 +33,7 @@ Common labels
 */}}
 {{- define "hello.labels" -}}
 helm.sh/chart: {{ include "hello.chart" . }}
+channel.linecorp.com/phase: {{ .Values.app.phase }}
 {{ include "hello.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

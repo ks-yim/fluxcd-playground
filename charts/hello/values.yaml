@@ -1,5 +1,8 @@
 # Default values for hello.
 
+app:
+  phase: ''
+
 replicaCount: 4
 logLevel: info
 
